@@ -203,14 +203,6 @@ node|z16-[power=connection]{
 /*============================================================================================*/
 
 way[power=~/line|minor_line|cable/]{
-	voltage_color_400000: #B54EB2;
-	voltage_color_275000: #FF0000;
-	voltage_color_132000: #B55D00;
-	voltage_color_66000: #B59F10;
-	voltage_color_33000: #55B555;
-	voltage_color_11000: #3030ff;
-	voltage_color_400: #FF00FF;
-	voltage_color_0: #444444;
 	voltage_list: split(";",tag("voltage"));
 	voltage_count: length(prop("voltage_list"));
     circuits_count: cond(tag("circuits")>10,10,cond(has_tag_key("circuits"),tag("circuits")-1,0) );
@@ -244,7 +236,6 @@ way[power=cable]::line_6{dashes: 15,5;}
 way[power=cable]::line_7{dashes: 15,5;}
 way[power=cable]::line_8{dashes: 15,5;}
 way[power=cable]::line_9{dashes: 15,5;}
-way[power=cable]::line_10{dashes: 15,5;}
 
 
 way|z16-[power=~/line|minor_line|cable/][circuits > 1]
@@ -262,8 +253,16 @@ way[power=~/line|minor_line|cable/]::line_0
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_0	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_0	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_0	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_0	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_0	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_0	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_0	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_0	{color: #ff0000;}
 
 
 way[power=~/line|minor_line|cable/][circuits>1]::line_1
@@ -273,8 +272,16 @@ way[power=~/line|minor_line|cable/][circuits>1]::line_1
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_1	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_1	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_1	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_1	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_1	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_1	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_1	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_1	{color: #ff0000;}
 
 way[power=~/line|minor_line|cable/][circuits>2]::line_2
 {   
@@ -283,8 +290,17 @@ way[power=~/line|minor_line|cable/][circuits>2]::line_2
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_2	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_2	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_2	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_2	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_2	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_2	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_2	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_2	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>3]::line_3
 {   
@@ -293,8 +309,16 @@ way[power=~/line|minor_line|cable/][circuits>3]::line_3
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_3	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_3	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_3	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_3	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_3	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_3	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_3	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_3	{color: #ff0000;}
 
 way[power=~/line|minor_line|cable/][circuits>4]::line_4
 {   
@@ -303,8 +327,17 @@ way[power=~/line|minor_line|cable/][circuits>4]::line_4
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_4	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_4	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_4	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_4	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_4	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_4	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_4	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_4	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>5]::line_5
 {   
@@ -313,8 +346,17 @@ way[power=~/line|minor_line|cable/][circuits>5]::line_5
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_5	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_5	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_5	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_5	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_5	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_5	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_5	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_5	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>6]::line_6
 {   
@@ -323,8 +365,17 @@ way[power=~/line|minor_line|cable/][circuits>6]::line_6
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_6	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_6	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_6	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_6	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_6	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_6	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_6	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_6	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>7]::line_7
 {   
@@ -333,8 +384,17 @@ way[power=~/line|minor_line|cable/][circuits>7]::line_7
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_7	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_7	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_7	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_7	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_7	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_7	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_7	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_7	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>8]::line_8
 {   
@@ -343,8 +403,17 @@ way[power=~/line|minor_line|cable/][circuits>8]::line_8
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_8	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_8	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_8	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_8	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_8	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_8	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_8	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_8	{color: #ff0000;}
+
 
 way[power=~/line|minor_line|cable/][circuits>9]::line_9
 {   
@@ -353,10 +422,16 @@ way[power=~/line|minor_line|cable/][circuits>9]::line_9
 	offset: prop("line_num") * prop("seperation","default") - prop("half_width","default");
 	voltage_index: cond(prop("voltage_count","default") == 1, 0, prop("line_num"));
 	this_voltage: get(prop("voltage_list","default"),prop("voltage_index"));
-	color: prop(concat("voltage_color_", prop("this_voltage")),"default");
+	color: #444444;
 }
-
-
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=000001]::line_9	{color: #FF00FF;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=010000]::line_9	{color: #3030ff;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=025000]::line_9	{color: #55B555;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=052000]::line_9	{color: #B59F10;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=132000]::line_9	{color: #B55D00;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=220000]::line_9	{color: #8100f9;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=310000]::line_9	{color: #6d0000;}
+way[power=~/line|minor_line|cable/][prop("this_voltage")>=550000]::line_9	{color: #ff0000;}
 /* busbar and bay */
 way[power=line][line=busbar]
 {
