@@ -1,2 +1,2 @@
-# Enhanced_Power_Mapcss
+# Enhanced Power Style
 mapcss for rendering power infrastructure in Open Street Map
