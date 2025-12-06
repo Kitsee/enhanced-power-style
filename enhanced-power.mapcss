@@ -23,15 +23,9 @@ way[power=line][line=bay] > node|z15-{
 	symbol-stroke-color:black;
 }
 
-way[power=cable] > node|z15-:tagged,
-way[power=line][line=busbar] > node|z15-:tagged,
-way[power=line][line=bay] > node|z15-:tagged{
-	symbol-fill-color: #00b0ff;
-}
-
 /* untagged node on a power line */
 way[power=line][line!=busbar][line!=bay] > node|z13-,
-way[power=minor_line][line!=busbar][line!=bay] > node|z16-,
+way[power=minor_line][line!=busbar][line!=bay] > node|z15-,
 way[communication=line] > node|z15-,
 way[telecom=line] > node|z15-{
 	symbol-shape: square;
@@ -40,10 +34,17 @@ way[telecom=line] > node|z15-{
 	symbol-size: 6;
 }
 
+way[power=cable] > node|z15-:tagged,
+way[power=line][line=busbar] > node|z15-:tagged,
+way[power=line][line=bay] > node|z15-:tagged{
+	symbol-fill-color: #00b0ff;
+}
+
 /* Poles & Towers Far */
 /*============================================================================================*/
 node|z15-[man_made=utility_pole],
 node|z15-[power=pole],
+node|z15-[power=portal],
 node|z13-[power=tower]
 {
     set .pole;
@@ -70,6 +71,7 @@ node[utility~=sewerage].pole	{ symbol-fill-color: #1d5575;}
 node[utility~=waste].pole		{ symbol-fill-color: #ee82ee;}
 node[utility~=power].pole,
 node[power=pole],
+node[power=portal],
 node[power=tower]               { symbol-fill-color: #FFFF00;} 
 
 
@@ -130,7 +132,131 @@ node[is_prop_set("pole_close", "default")][man_made=utility_pole][utility][utili
 /* Substations */
 /*============================================================================================*/
 
+/* substation / pole transformer node*/
 
+node|z13-[power=~/pole|tower/][transformer],
+node|z13-[power=substation]{
+	symbol-shape: square;
+	symbol-size: 5;
+	symbol-stroke-color: yellow;
+	symbol-fill-color: orange;
+	symbol-fill-opacity: 1;
+}
+
+node|z16-[power=~/pole|tower/][transformer],
+node|z16-[power=substation]{
+	icon-image:"presets/power/substation.svg";
+    text-color: red;
+    font-size: 11;
+    text: tag("name");
+    text-halo-radius: 2;
+    text-offset-x: 3;
+    text-offset-y: 17;
+    z-index:3.0;
+}
+
+node|z16-[power=~/pole|tower/][transformer]::volt,
+node|z16-[power=substation]::volt{
+  text-color: red;
+  font-size: 9;
+  text: tag("voltage");
+  text-halo-radius: 2;
+  text-offset-x: 6;
+  text-offset-y: 0;
+  text-position: center;
+  z-index:3.0;
+}
+
+node|z16-[power=~/pole|tower/][transformer]::ref,
+node|z16-[power=substation]::ref{
+    text-color: red;
+    font-size: 9;
+    text: tag("ref:GB:wpd_site");
+    text-halo-radius: 2;
+    text-offset-x: 6;
+    text-offset-y: -12;
+    z-index:3.0;
+}
+
+/* Pole Transformer */
+node|z16-[power=~/pole|tower/][transformer]{
+	icon-image:"presets/power/pole_transformer.svg";
+}
+
+node|z16-[power=~/pole|tower/][transformer]::volt{
+
+	text: eval(concat(tag("voltage:primary"), " / ", tag("voltage:secondary")));
+}
+
+/* substation area*/
+area|z20-[power=substation]
+{
+	fill-color: blue;
+	fill-opacity:0.1;
+	fill-extent:30;
+	text: tag("name");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+}
+
+area|z20-[power=substation]::voltage{
+	text: tag("voltage");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+	text-offset-x: 0;
+ 	text-offset-y: -12;
+}
+
+area|z20-[power=substation]::ref{
+	text: tag("ref:GB:wpd_site");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+	text-offset-x: 0;
+ 	text-offset-y: -25;
+}
+
+/* substation area far */
+area|z16-19[power=substation]{
+	fill-color: blue;
+	fill-opacity:0.1;
+}
+
+area[power=substation] >[index=1] node|z16-19
+{
+	text: parent_tag("name");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+	z-index:3.0;
+}
+
+area[power=substation][voltage] >[index=1] node|z16-19::volt{
+	text: parent_tag("voltage");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+	text-offset-x: 0;
+ 	text-offset-y: -12;
+	z-index:3.0;
+}
+area[power=substation][ref:GB:wpd_site] >[index=1] node|z16-19::ref{
+	text: parent_tag("ref:GB:wpd_site");
+	text-position: center;
+	text-halo-radius: 2;
+	text-color: red;
+    font-size: 11;
+	text-offset-x: 0;
+ 	text-offset-y: -25;
+	z-index:3.0;
+}
 
 /* Components */
 /*============================================================================================*/
