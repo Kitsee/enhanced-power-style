@@ -11,6 +11,12 @@ canvas {
     default-points: false;
 }
 
+setting::circuit_relation_warning {
+	type: boolean;
+	label: "Displays a warning on lines with multiple circuits without circuit relations";
+	default: true;
+}
+
 /* default nodes */
 /*============================================================================================*/
 
@@ -580,6 +586,22 @@ way[power=line][line=bay]
 	right-casing-width:2;
     right-casing-color:blue;
 }
+
+/* Circuit Relation Warning*/
+way[power=~/line|minor_line|cable/][circuits > 1][voltage != 0][setting("circuit_relation_warning")][
+	(count(parent_osm_primitives("power","circuit")) - count(parent_osm_primitives("circuits")) +
+	(count(parent_osm_primitives("circuits","1")) * 1) +
+	(count(parent_osm_primitives("circuits","2")) * 2) +
+	(count(parent_osm_primitives("circuits","3")) * 3) +
+	(count(parent_osm_primitives("circuits","4")) * 4)) != tag("circuits")
+]::mult_circuits
+{
+    casing-dashes:8,25;
+	casing-width: (((tag("circuits")-1) * 4)/2)+4 ;
+    casing-color:#FF0000;
+} 
+
+
 /* Non-Power Lines */
 /*============================================================================================*/
 
